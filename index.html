@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection"content="telephone=no, email=no" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="320">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="browsermode" content="application">
+	<meta name="x5-page-mode" content="app">
+	<meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>AlightBox</title>	
+	<style>
+		/*没用的*/
+		.test_btnbox{ line-height: 60px; text-align: center; }
+		.test_btnbox .btn_submit{ padding: 5px 8px; color: #fff; background: skyblue; }
+		.test p{ line-height: 100px; }
+	</style>
+	<script type="text/javascript">
+		// js rem重设
+        function fontFun(){
+            var rootWi = document.documentElement.clientWidth;
+            rootWi = rootWi > 640 ? 640 : rootWi;
+            var rootSize = rootWi / 640 * 100;
+            document.documentElement.style.fontSize = rootSize + "px";
+         }
+         fontFun()
+         window.onresize = function(){
+            fontFun()
+         }
+	</script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/zepto.1.2.0.min.js"></script>
+    <script src="js/AlightBox.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="test_btnbox"><span class="btn_submit">点击</span></div>
+		<div class="test">
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+			<p>这是测试滚动</p>
+		</div>
+	</div>	
+</body>
+</html>
+<script type="text/javascript">
+	// 一个非默认弹窗demo
+	document.querySelector(".btn_submit").onclick = function(){
+		
+		// 更多参数，查看Alightbox.jsjs中 api
+		
+		// 弹出窗
+		var alerts = new AlightBox({
+				animateClass: "tada animated",   //可选， 可调用外部js动画库，如 animate.css，默认为。windows_animate
+				alertWord: "你确定要提交",	//可选， 默认为空
+				cancelShow: true,	//是否显示第二个按钮，默认不显示，就只有个确定
+				unclose: true,		//可选，如果需要ajax回调时要为true，不然会立刻关闭确认框
+				scrollLock: true,	//可选, 弹窗出现时是否禁止滚动
+				confirm: function(){
+					alerts._reffer();	//因为配置了禁止关闭，所以外部调用关闭
+
+					// 提示窗
+					var alertTips = new AlightBox({
+						alertType: 1,
+						alertWord: "提交完成",
+					})
+				}
+		})
+
+	}
+</script>
+
